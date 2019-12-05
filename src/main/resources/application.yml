@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db_cloud?serverTimezone=GMT%2B8
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mvc:
+    view:
+      prefix: classpath:/tepmlates/
+      suffix: .html
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
+  #kafka配置
+  kafka:
+    #kafka消费者配置
+    consumer:
+      bootstrap-servers: 127.0.0.1:9092
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+    #kafka生产者配置
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+      acks: -1
+      client-id: kafka-producer
+      batch-size: 5
